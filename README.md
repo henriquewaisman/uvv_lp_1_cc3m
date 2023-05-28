@@ -39,3 +39,9 @@ Chamado:</br>
 ![call5](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call5.png)</br> 
 Output:</br> 
 ![pigbird](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/pigbird1.png)</br> 
+### Questão da Seção 5.1
+#### Quando você terminar e seu código passar em todos os testes relacionados ao desfoque, execute seu filtro na imagem test_images/cat.png com um kernel de desfoque de caixa de tamanho 5, salve o resultado como uma imagem PNG e faça o upload para seu repositório GitHub.
+Chamado: </br>
+![call5.1]([https://github.com/henriquewaisman/ubvv](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call51.png))
+Output: </br>
+![cat1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/cat1.png)
