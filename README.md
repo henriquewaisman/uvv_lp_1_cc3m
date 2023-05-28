@@ -18,7 +18,7 @@ Após toda imagem passar pelo tratamento, será esperado um output de altura: 1,
 Chamado: </br>
 ![call3](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call3.png) </br>
 Output:  </br>
-![image_bluegill](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/bluegill.png) </br>
+![image_bluegill](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/bluegill1.png) </br>
 ### Questão 3
 #### Considere uma etapa de correlacionar uma imagem com o seguinte kernel: </br> 0.00 -0.07 0.00 </br> -0.45 1.20 -0.25 </br> 0.00 -0.12 0.00 </br></br> Aqui está uma parte de uma imagem de amostra, com as luminosidades específicas de alguns pixels:
 ![image_questao3](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/questao3.png)</br>
@@ -38,10 +38,10 @@ Cálculo: </br>
 Chamado:</br> 
 ![call5](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call5.png)</br> 
 Output:</br> 
-![pigbird](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/pigbird1.png)</br> 
+![pigbird](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/pigbird1.png)</br> 
 ### Questão da Seção 5.1
 #### Quando você terminar e seu código passar em todos os testes relacionados ao desfoque, execute seu filtro na imagem test_images/cat.png com um kernel de desfoque de caixa de tamanho 5, salve o resultado como uma imagem PNG e faça o upload para seu repositório GitHub.
 Chamado: </br>
-![call5.1]([https://github.com/henriquewaisman/ubvv](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call51.png))
+![call5.1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call51.png) </br>
 Output: </br>
-![cat1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/cat1.png)
+![cat1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/cat1.png) </br>
