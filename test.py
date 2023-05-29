@@ -2,10 +2,10 @@
 # Preencha seus dados e leia a declaração de honestidade abaixo. NÃO APAGUE
 # nenhuma linha deste comentário de seu código!
 #
-#    Nome completo:
-#    Matrícula:
-#    Turma:
-#    Email:
+#    Nome completo: Henrique Oliveira Waisman
+#    Matrícula: 202299953
+#    Turma: CC3M
+#    Email: howaisman@gmail.com
 #
 # DECLARAÇÃO DE HONESTIDADE ACADÊMICA:
 # Eu afirmo que o código abaixo foi de minha autoria. Também afirmo que não
@@ -80,6 +80,8 @@ class TestInvertida(unittest.TestCase):
                 resultado = pset1.Imagem.carregar(arquivo_entrada).invertida()
                 esperado = pset1.Imagem.carregar(arquivo_saida)
                 self.assertEqual(resultado,  esperado)
+
+
 
 # Classe para os testes dos filtros:
 class TestFiltros(unittest.TestCase):
