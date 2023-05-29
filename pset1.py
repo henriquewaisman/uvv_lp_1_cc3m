@@ -2,10 +2,10 @@
 # Preencha seus dados e leia a declaração de honestidade abaixo. NÃO APAGUE
 # nenhuma linha deste comentário de seu código!
 #
-#    Nome completo:
-#    Matrícula:
-#    Turma:
-#    Email:
+#    Nome completo: Henrique Oliveira Waisman
+#    Matrícula: 202299953
+#    Turma: CC3M
+#    Email: howaisman@gmail.com
 #
 # DECLARAÇÃO DE HONESTIDADE ACADÊMICA:
 # Eu afirmo que o código abaixo foi de minha autoria. Também afirmo que não
@@ -27,6 +27,12 @@ from io import BytesIO
 from PIL import Image as PILImage
 
 
+def kernelFunc(n):
+    # Cria uma matriz em row major order de tamanho n
+    kernel = [[1 / n ** 2 for index in range(n)] for index in range(n)]
+    return kernel
+
+
 # Classe Imagem:
 class Imagem:
     def __init__(self, largura, altura, pixels):
@@ -35,24 +41,21 @@ class Imagem:
         self.pixels = pixels
 
     def get_pixel(self, x, y):
-        #Checar se o pixel está dentro do limite do eixo X, se não estiver setar o valor de X = ao valor correto mais próximo
+        # Se o pixel não está dentro do limite do eixo X setar o valor de X = ao valor correto mais próximo
         if x < 0:
             x = 0
-        elif x > self.largura:
+        elif x >= self.largura:
             x = self.largura - 1
-
-        #Fazer o mesmo com a altura Y do pixel
+        # Fazer o mesmo com a altura Y do pixel
         if y < 0:
             y = 0
-        elif y > self.altura:
+        elif y >= self.altura:
             y = self.altura - 1
-
-        #Retorna o pixel específico
+        # Retorna o pixel específico
         return self.pixels[(x + y * self.largura)]
-        #return self.pixels[x, y]
 
     def set_pixel(self, x, y, c):
-        #Armazena um pixel na variável C
+        # Armazena um pixel na variável C
         self.pixels[(x + y * self.largura)] = c
 
     def aplicar_por_pixel(self, func):
@@ -67,11 +70,45 @@ class Imagem:
     def invertida(self):
         return self.aplicar_por_pixel(lambda c: 255 - c)
 
+    def correlacao(self, n):
+        tamanhoKernel = len(n)                          # Recebe o kernel k e determina seu tamanho
+        i = Imagem.nova(self.largura, self.altura)      # Cria uma imagem com as mesmas dimensões da imagem de entrada
+        for x in range(self.largura):                   # Percorre todas as linhas da imagem
+            for y in range(self.altura):                # Percorre todas as colunas da imagem
+                somaCorrelacao = 0                      # Soma da correlação pixel-kernel
+                for a in range(tamanhoKernel):          # Percorre as linhas do kernel
+                    for b in range(tamanhoKernel):      # Percorre as colunas do kernel
+                        somaCorrelacao += self.get_pixel((x-(tamanhoKernel//2)+a), (y-(tamanhoKernel//2))+b)*n[a][b]
+                        # A somaCorrelacao será incrementada a partir da multiplicação de um pixel (x, y) a um
+                        # elemento correspondente no kernel (kx, ky)
+                i.set_pixel(x, y, somaCorrelacao)       # O valor da correlação é atribuido ao pixel na imagem de saída
+        return i                                        # Retorna a nova imagem
+
     def borrada(self, n):
-        raise NotImplementedError
+        kernel = self.correlacao(kernelFunc(n))
+        kernel.pixel_tratado()
+        return kernel
+
+    def pixel_tratado(self):
+        for x in range(self.largura):
+            for y in range(self.altura):
+                pixel = self.get_pixel(x, y)
+                if pixel < 0:
+                    pixel = 0
+                elif pixel > 255:
+                    pixel = 255
+                pixel = round(pixel)
+                self.set_pixel(x, y, pixel)
 
     def focada(self, n):
-        raise NotImplementedError
+        imBorrada = self.borrada(n)
+        i = Imagem.nova(self.largura, self.altura)
+        for x in range(self.largura):
+            for y in range(self.altura):
+                imFocada = round(2*self.get_pixel(x, y) - (imBorrada.get_pixel(x, y)))
+                i.set_pixel(x, y, imFocada)
+        i.pixel_tratado()
+        return i
 
     def bordas(self):
         raise NotImplementedError
@@ -216,6 +253,35 @@ if __name__ == '__main__':
     # O código neste bloco só será executado quando você executar
     # explicitamente seu script e não quando os testes estiverem
     # sendo executados. Este é um bom lugar para gerar imagens, etc.
+
+
+    # Questão 2
+    im = Imagem.carregar('test_images/bluegill.png')
+    inIm = im.invertida()
+    Imagem.salvar(inIm, 'img_resultado/bluegill1.png')
+
+    # Questão 4
+    kernel = [[0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [1, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0],
+              [0, 0, 0, 0, 0, 0, 0, 0, 0]]
+
+    im = Imagem.carregar('test_images/pigbird.png')
+    coIm = im.correlacao(kernel)
+    Imagem.salvar(coIm, 'img_resultado/pigbird1.png')
+
+    # Questão 5.1
+    im = Imagem.carregar('test_images/cat.png')
+    blIm = im.borrada(5)
+    Imagem.salvar(blIm, 'img_resultado/cat1.png')
+
+    # Questão 5
+
     pass
 
     # O código a seguir fará com que as janelas de Imagem.mostrar
