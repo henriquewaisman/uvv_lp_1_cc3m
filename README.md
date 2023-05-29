@@ -52,3 +52,11 @@ Input:</br>
 ![input3](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/test_images/cat.png)</br>
 Output:</br>
 ![cat1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/cat1.png)</br>
+### Questão 5
+#### Se quisermos usar uma versão desfocada B que foi feita com um kernel de desfoque de caixa de 3 × 3, que kernel k poderíamos usar para calcular toda a imagem nítida com uma única correlação? Justifique sua resposta mostrando os cálculos.
+
+
+
+### Questão 6
+#### Explique o que cada um dos kernels acima, por si só, está fazendo. Tente executar mostrar nos resultados dessas correlações intermediárias para ter uma noção do que está acontecendo aqui.
+#### Kernel Kx:</br>-1 0 1</br>-2 0 2</br>-1 0 1</br></br>Kernel Ky:</br>-1 -2 -1</br>0 0 0</br>1 2 1
