@@ -1,6 +1,7 @@
 # Linguagens de Programação
 ## Pset 1
 Aluno: Henrique Oliveira Waisman </br>
+Turma: CC3M </br>
 Professor: Abrantes Araújo Silva Filho
 ### Descrição
 Este PSET é uma tradução da primeira tarefa de programação que os alunos da </br>
