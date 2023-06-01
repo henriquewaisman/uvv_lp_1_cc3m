@@ -82,3 +82,5 @@ Kernel Kx destaca bordas no eixo X e Ky faz o mesmo no eixo Y</br>
 ![ky](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/construct2.png)</br>
 #### Ambos Aplicados:</br>
 ![kxky](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/construct3.png)</br>
+# Arquivo Teste:</br>
+![test](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/teste.png)
