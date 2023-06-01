@@ -54,9 +54,31 @@ Output:</br>
 ![cat1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/cat1.png)</br>
 ### Questão 5
 #### Se quisermos usar uma versão desfocada B que foi feita com um kernel de desfoque de caixa de 3 × 3, que kernel k poderíamos usar para calcular toda a imagem nítida com uma única correlação? Justifique sua resposta mostrando os cálculos.
-
-
-
+O kernel pode ser calculado pela equação descrita na seção 5.2 do pdf:
+  - Sx,y = round(2Ix,y − Bx,y) </br> 
+Como queremos achar o kernel de entrada, precisamos usar o kernel identidade descrito na seção 4.3.1
+  - 0 0 0 </br> 0 1 0 </br> 0 0 0 </br>
+Multiplicando por 2 como mostrado na equação 2Ix,y − Bx,y, temos:
+  - 0 0 0 </br> 0 2 0 </br> 0 0 0 </br>
+Bastaria então fazer a subtração de 2Ix,y de 2bx, y que obteríamos o resultado esperado com uma única correlação. </br>
+#### Aplicação:
+Chamado:</br>
+![call55](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call55.png)</br>
+Input:</br>
+![python](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/test_images/python.png)</br>
+Output:</br>
+![python1](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/python1.png)</br>
 ### Questão 6
 #### Explique o que cada um dos kernels acima, por si só, está fazendo. Tente executar mostrar nos resultados dessas correlações intermediárias para ter uma noção do que está acontecendo aqui.
 #### Kernel Kx:</br>-1 0 1</br>-2 0 2</br>-1 0 1</br></br>Kernel Ky:</br>-1 -2 -1</br>0 0 0</br>1 2 1
+Kernel Kx destaca bordas no eixo X e Ky faz o mesmo no eixo Y</br>
+#### Chamado: </br>
+![call6](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_readme/call6.png)</br>
+#### Original:</br>
+![construct](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/test_images/construct.png)
+#### Kernel Kx:</br>
+![kx](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/construct1.png)</br>
+#### Kernel Ky:</br>
+![ky](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/construct2.png)</br>
+#### Ambos Aplicados:</br>
+![kxky](https://github.com/henriquewaisman/uvv_lp_1_cc3m/blob/main/img_resultado/construct3.png)</br>
