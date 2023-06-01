@@ -78,9 +78,9 @@ class Imagem:
                 somaCorrelacao = 0                      # Soma da correlação pixel-kernel
                 for a in range(tamanhoKernel):          # Percorre as linhas do kernel
                     for b in range(tamanhoKernel):      # Percorre as colunas do kernel
-                        somaCorrelacao += self.get_pixel((x-(tamanhoKernel//2)+a), (y-(tamanhoKernel//2))+b)*n[a][b]
                         # A somaCorrelacao será incrementada a partir da multiplicação de um pixel (x, y) a um
                         # elemento correspondente no kernel (kx, ky)
+                        somaCorrelacao += self.get_pixel((x-(tamanhoKernel//2)+a), (y-(tamanhoKernel//2))+b)*n[a][b]
                 i.set_pixel(x, y, somaCorrelacao)       # O valor da correlação é atribuido ao pixel na imagem de saída
         return i                                        # Retorna a nova imagem
 
@@ -111,7 +111,21 @@ class Imagem:
         return i
 
     def bordas(self):
-        raise NotImplementedError
+        i = Imagem.nova(self.largura, self.altura)
+        kx = [[1, 0, -1],
+              [2, 0, -2],
+              [1, 0, -1]]
+        ky = [[1, 2, 1],
+              [0, 0, 0],
+              [-1, -2, -1]]
+        correlacaox = self.correlacao(kx)
+        correlacaoy = self.correlacao(ky)
+        for x in range(self.largura):
+            for y in range(self.altura):
+                operador = round(math.sqrt(correlacaox.get_pixel(x, y) ** 2 + correlacaoy.get_pixel(x, y) ** 2))
+                i.set_pixel(x, y, operador)
+        i.pixel_tratado()
+        return i
 
     # Abaixo deste ponto estão utilitários para carregar, salvar e mostrar
     # as imagens, bem como para a realização de testes.
@@ -254,7 +268,6 @@ if __name__ == '__main__':
     # explicitamente seu script e não quando os testes estiverem
     # sendo executados. Este é um bom lugar para gerar imagens, etc.
 
-
     # Questão 2
     im = Imagem.carregar('test_images/bluegill.png')
     inIm = im.invertida()
@@ -281,6 +294,26 @@ if __name__ == '__main__':
     Imagem.salvar(blIm, 'img_resultado/cat1.png')
 
     # Questão 5
+    im = Imagem.carregar('test_images/python.png')
+    boIm = im.focada(11)
+    Imagem.salvar(boIm, 'img_resultado/python1.png')
+
+    # Questão 6
+    kx = [[-1, 0, 1],
+          [-2, 0, 2],
+          [-1, 0, 1]]
+
+    ky = [[-1, -2, -1],
+          [0, 0, 0],
+          [1, 2, 1]]
+
+    im = Imagem.carregar('test_images/construct.png')
+    borX = im.correlacao(kx)
+    Imagem.salvar(borX, 'img_resultado/construct1.png')
+    borY = im.correlacao(ky)
+    Imagem.salvar(borY, 'img_resultado/construct2.png')
+    borIm = im.bordas()
+    Imagem.salvar(borIm, 'img_resultado/construct3.png')
 
     pass
 
