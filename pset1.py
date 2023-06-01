@@ -85,47 +85,50 @@ class Imagem:
         return i                                        # Retorna a nova imagem
 
     def borrada(self, n):
-        kernel = self.correlacao(kernelFunc(n))
-        kernel.pixel_tratado()
-        return kernel
+        kernel = self.correlacao(kernelFunc(n))         # Chama a kernelFunc para produzir um Kernel
+                                                        # Correlaciona cada pixel da matriz gerada
+        kernel.pixel_tratado()                          # Trata a correlação
+        return kernel                                   # Retorna o kernel tratado
 
     def pixel_tratado(self):
-        for x in range(self.largura):
-            for y in range(self.altura):
-                pixel = self.get_pixel(x, y)
-                if pixel < 0:
+        for x in range(self.largura):                   # Percorre a largura X da imagem
+            for y in range(self.altura):                # Percorre a altura Y da altura
+                pixel = self.get_pixel(x, y)            # Trata pixel a pixel
+                if pixel < 0:                           # Se o valor do pixel for menor que 0, é agora igual a 0
                     pixel = 0
-                elif pixel > 255:
+                elif pixel > 255:                       # Se o valor do pixel for maior que 255, agora é igual a 255
                     pixel = 255
-                pixel = round(pixel)
-                self.set_pixel(x, y, pixel)
+                pixel = round(pixel)                    # Se o pixel está com valor float, aqui ele é arredondado
+                self.set_pixel(x, y, pixel)             # Seta o pixel tratado
 
     def focada(self, n):
-        imBorrada = self.borrada(n)
-        i = Imagem.nova(self.largura, self.altura)
-        for x in range(self.largura):
-            for y in range(self.altura):
-                imFocada = round(2*self.get_pixel(x, y) - (imBorrada.get_pixel(x, y)))
-                i.set_pixel(x, y, imFocada)
-        i.pixel_tratado()
-        return i
+        imBorrada = self.borrada(n)                     # Borra uma imagem
+        i = Imagem.nova(self.largura, self.altura)      # Cria uma imagem vazia
+        for x in range(self.largura):                   # Percorre largura
+            for y in range(self.altura):                # Percorre altura
+                imFocada = round(2*self.get_pixel(x, y) - (imBorrada.get_pixel(x, y))) 
+                # Função dada no pset1.pdf
+                i.set_pixel(x, y, imFocada)             # Seta os pixels focados
+        i.pixel_tratado()                               # Trata os pixels da nova imagem
+        return i                                        # Retorna a imagem focada
 
     def bordas(self):
-        i = Imagem.nova(self.largura, self.altura)
-        kx = [[1, 0, -1],
+        i = Imagem.nova(self.largura, self.altura)      # Cria uma imagem vazia
+        kx = [[1, 0, -1],                               # Destada as bordas de X
               [2, 0, -2],
               [1, 0, -1]]
-        ky = [[1, 2, 1],
+        ky = [[1, 2, 1],                                # Destaca as bordas de Y
               [0, 0, 0],
               [-1, -2, -1]]
-        correlacaox = self.correlacao(kx)
-        correlacaoy = self.correlacao(ky)
+        correlacaox = self.correlacao(kx)               # Faz a Correlação com o kernel Kx
+        correlacaoy = self.correlacao(ky)               # Faz o mesmo com Ky
         for x in range(self.largura):
             for y in range(self.altura):
                 operador = round(math.sqrt(correlacaox.get_pixel(x, y) ** 2 + correlacaoy.get_pixel(x, y) ** 2))
-                i.set_pixel(x, y, operador)
-        i.pixel_tratado()
-        return i
+                # Função descrita no pset1.pdf
+                i.set_pixel(x, y, operador)             # Seta os pixels novos
+        i.pixel_tratado()                               # Trata os pixels novos
+        return i                                        # Retorna a imagem filtrada
 
     # Abaixo deste ponto estão utilitários para carregar, salvar e mostrar
     # as imagens, bem como para a realização de testes.
