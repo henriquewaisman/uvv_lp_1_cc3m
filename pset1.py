@@ -2,10 +2,10 @@
 # Preencha seus dados e leia a declaração de honestidade abaixo. NÃO APAGUE
 # nenhuma linha deste comentário de seu código!
 #
-#    Nome completo: Henrique Oliveira Waisman
-#    Matrícula: 202299953
-#    Turma: CC3M
-#    Email: howaisman@gmail.com
+#    Nome completo: 
+#    Matrícula: 
+#    Turma: 
+#    Email: 
 #
 # DECLARAÇÃO DE HONESTIDADE ACADÊMICA:
 # Eu afirmo que o código abaixo foi de minha autoria. Também afirmo que não
